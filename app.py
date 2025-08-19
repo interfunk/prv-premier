@@ -17,9 +17,6 @@ else:
     st.error("⚠️ Could not fetch standings from API")
     st.stop()
 
-top5_actual = actual_table[:5]
-bottom5_actual = actual_table[-5:]
-
 # ========================
 # 🎮 Scoring function
 # ========================
@@ -47,45 +44,33 @@ def calculate_points(actual, predicted):
     return points
 
 # ========================
-# 🖥️ Streamlit UI
+# 📝 Player Predictions
 # ========================
-st.title("⚽ Premier League Prediction Game")
-
-st.markdown("Pick your **Top 5** and **Bottom 5** teams. Scoring:")
-st.markdown("- ✅ Correct position = **10 points**")
-st.markdown("- ⚠️ Correct team but wrong place in top/bottom 5 = **5 points**")
-st.markdown("- ❌ No points for places 6–15")
-
-teams = actual_table  # use current season teams
-
-player_name = st.text_input("Your name:")
-
-st.subheader("Your Top 5 Teams")
-top5_pick = st.multiselect("Pick your Top 5 (in order)", teams, max_selections=5)
-
-st.subheader("Your Bottom 5 Teams")
-bottom5_pick = st.multiselect("Pick your Bottom 5 (in order)", teams, max_selections=5)
-
-if st.button("Submit Prediction"):
-    if len(top5_pick) == 5 and len(bottom5_pick) == 5 and player_name:
-        prediction = top5_pick + bottom5_pick
-        score = calculate_points(actual_table, prediction)
-
-        st.success(f"🎉 {player_name}, you scored **{score} points**!")
-
-        # Store results in session
-        if "results" not in st.session_state:
-            st.session_state["results"] = {}
-        st.session_state["results"][player_name] = score
-    else:
-        st.error("⚠️ Please select exactly 5 teams for Top 5 and Bottom 5, and enter your name.")
+predictions = {
+    "Alice": [
+        "Manchester City FC", "Arsenal FC", "Liverpool FC", "Chelsea FC", "Manchester United FC",
+        "AFC Bournemouth", "Brentford FC", "Burnley FC", "Sunderland AFC", "Wolverhampton Wanderers FC"
+    ],
+    "Bob": [
+        "Liverpool FC", "Arsenal FC", "Manchester City FC", "Tottenham Hotspur FC", "Newcastle United FC",
+        "Everton FC", "Burnley FC", "Leeds United FC", "Crystal Palace FC", "AFC Bournemouth"
+    ],
+    "Jeff": [
+        "Manchester City FC", "Sunderland AFC", "Tottenham Hotspur FC", "Liverpool FC", "Nottingham Forest FC",
+        "AFC Bournemouth", "Brentford FC", "Burnley FC", "West Ham United FC", "Wolverhampton Wanderers FC"
+    ]
+    # ➕ Add more players here
+}
 
 # ========================
-# 📊 Leaderboard
+# 🏆 Leaderboard
 # ========================
-if "results" in st.session_state and st.session_state["results"]:
-    st.subheader("🏆 Leaderboard")
-    ranked_results = dict(sorted(st.session_state["results"].items(), key=lambda x: x[1], reverse=True))
+st.title("⚽ Premier League Prediction Leaderboard")
 
-    for player, score in ranked_results.items():
-        st.write(f"**{player}** — {score} points")
+results = {player: calculate_points(actual_table, table) for player, table in predictions.items()}
+ranked_results = dict(sorted(results.items(), key=lambda x: x[1], reverse=True))
+
+st.subheader("Current Rankings")
+
+for rank, (player, score) in enumerate(ranked_results.items(), start=1):
+    st.write(f"**{rank}. {player} — {score} points**")
