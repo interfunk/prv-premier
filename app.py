@@ -6,7 +6,6 @@ import requests
 # ⚽ Fetch actual standings
 # ========================
 
-# ✅ Load API key from Streamlit Secrets
 API_KEY = os.environ.get("FOOTBALL_API_KEY")
 if not API_KEY:
     st.error("⚠️ API key not found! Did you set it in Streamlit Secrets?")
@@ -64,7 +63,17 @@ def calculate_points(actual, predicted):
 # ========================
 predictions = {
 	"Paulius": ['Liverpool FC', 'Chelsea FC', 'Arsenal FC', 'Manchester City FC', 'Newcastle United FC', 'Nottingham Forest FC', 'Leeds United FC', 'AFC Bournemouth', 'Sunderland AFC', 'Burnley FC'],
-    "Tom": ['Liverpool FC', 'Chelsea FC', 'Arsenal FC', 'Manchester City FC', 'Newcastle United FC', 'Nottingham Forest FC', 'Leeds United FC', 'AFC Bournemouth', 'Sunderland AFC', 'Burnley FC'],
+    "STU": ['Liverpool FC', 'Manchester City FC', 'Chelsea FC', 'Arsenal FC', 'Aston Villa FC', 'West Ham United FC', 'Leeds United FC', 'Brentford FC', 'Sunderland AFC', 'Burnley FC'],
+"Tinker": ['Manchester City FC', 'Liverpool FC', 'Chelsea FC', 'Arsenal FC', 'Aston Villa FC', 'Wolverhampton Wanderers FC', 'Leeds United FC', 'Manchester United FC', 'Burnley FC', 'Sunderland AFC'],
+"Rob M": ['Liverpool FC', 'Arsenal FC', 'Manchester City FC', 'Chelsea FC', 'Manchester United FC', 'Wolverhampton Wanderers FC', 'Sunderland AFC', 'Nottingham Forest FC', 'Burnley FC', 'Leeds United FC'],
+"Callum J": ['Liverpool FC', 'Arsenal FC', 'Manchester City FC', 'Manchester United FC', 'Chelsea FC', 'Wolverhampton Wanderers FC', 'Brentford FC', 'Sunderland AFC', 'Burnley FC', 'Leeds United FC'],
+"Rich": ['Liverpool FC', 'Arsenal FC', 'Chelsea FC', 'Manchester City FC', 'Manchester United FC', 'Tottenham Hotspur FC', 'Wolverhampton Wanderers FC', 'Sunderland AFC', 'Brentford FC', 'Burnley FC'],
+"Shaun J": ['Manchester City FC', 'Chelsea FC', 'Arsenal FC', 'Tottenham Hotspur FC', 'Manchester United FC', 'Leeds United FC', 'Sunderland AFC', 'Wolverhampton Wanderers FC', 'Brentford FC', 'Burnley FC'],
+"Dale": ['Liverpool FC', 'Manchester United FC', 'Manchester City FC', 'Arsenal FC', 'Chelsea FC', 'Sunderland AFC', 'Brentford FC', 'West Ham United FC', 'Leeds United FC', 'Wolverhampton Wanderers FC'],
+"Mark D": ['Chelsea FC', 'Manchester City FC', 'Liverpool FC', 'Manchester United FC', 'Arsenal FC', 'Fulham FC', 'West Ham United FC', 'Wolverhampton Wanderers FC', 'Burnley FC', 'Sunderland AFC'],
+"Matt F": ['Liverpool FC', 'Manchester City FC', 'Chelsea FC', 'Arsenal FC', 'Newcastle United FC', 'Wolverhampton Wanderers FC', 'Leeds United FC', 'Sunderland AFC', 'Brentford FC', 'Burnley FC'],
+"Matt C": ['Liverpool FC', 'Arsenal FC', 'Manchester City FC', 'Chelsea FC', 'Manchester United FC', 'Brentford FC', 'Wolverhampton Wanderers FC', 'Leeds United FC', 'Burnley FC', 'Sunderland AFC'],
+"Paul J": ['Liverpool FC', 'Manchester City FC', 'Arsenal FC', 'Chelsea FC', 'Manchester United FC', 'Wolverhampton Wanderers FC', 'Brentford FC', 'Sunderland AFC', 'Leeds United FC', 'Burnley FC']
 }
 
 # ========================
